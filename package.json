@@ -1,0 +1,19 @@
+{
+  "name": "semvergit",
+  "version": "0.0.1",
+  "description": "Auto update package.json on precommit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "semvergit": "index.js"
+  },
+  "author": "Rishabh Mishra",
+  "license": "MIT",
+  "dependencies": {
+    "husky": "^0.14.3",
+    "readline-sync": "^1.4.8",
+    "semver": "^5.5.0"
+  }
+}
