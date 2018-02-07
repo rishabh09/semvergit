@@ -1,25 +1,25 @@
 #!/usr/bin/env node
-
-const fs = require('fs')
-const semver = require('semver')
 const readlineSync = require('readline-sync')
+const shell = require('shelljs');
 
+if (!shell.which('git')) {
+  shell.echo('Sorry, this script requires git');
+  shell.exit(1);
+}
 
-process.on('SIGINT', function() {
-  console.log("Caught interrupt signal");
-  process.exit();
-});
-    
-const packageJsonPath = process.cwd() + '/package.json'
+let currentDir = process.cwd()
+
+const packageJsonPath = currentDir + '/package.json'
+const packageLockPath = currentDir + '/package-lock.json'
+
 let updateTypes = ['patch', 'minor', 'major']
 
 let index = readlineSync.keyInSelect(updateTypes, 'Choose Update type');
 if(index === -1) {
+  console.log('no update in package.json')
   process.exit(0);
 }
-let data = fs.readFileSync(packageJsonPath, 'utf8')
-let jsonData = JSON.parse(data)
-let version = semver.inc(jsonData.version, updateTypes[index])
-jsonData.version = version
-fs.writeFileSync(packageJsonPath, JSON.stringify(jsonData, null, 2))
-console.log(updateTypes[index] + ' update version '+ version)
+
+shell.exec('npm version ' + updateTypes[index])
+shell.exec('git add '+ packageJsonPath +' ' + packageLockPath)
+console.log(updateTypes[index] + ' update')
