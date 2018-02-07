@@ -1,6 +1,6 @@
 {
   "name": "semvergit",
-  "version": "0.4.1",
+  "version": "0.3.1",
   "description": "Auto update package.json on precommit",
   "main": "index.js",
   "scripts": {
@@ -8,6 +8,10 @@
   },
   "bin": {
     "semvergit": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rishabh09/sermver.git"
   },
   "author": "Rishabh Mishra",
   "license": "MIT",
