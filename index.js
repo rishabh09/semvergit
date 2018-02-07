@@ -20,6 +20,6 @@ if(index === -1) {
   process.exit(0);
 }
 
-shell.exec('npm version ' + updateTypes[index])
+shell.exec('npm --no-git-tag-version version ' + updateTypes[index])
 shell.exec('git add '+ packageJsonPath +' ' + packageLockPath)
 console.log(updateTypes[index - 1] + ' update')
