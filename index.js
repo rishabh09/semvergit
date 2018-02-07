@@ -22,4 +22,4 @@ if(index === -1) {
 
 shell.exec('npm version ' + updateTypes[index])
 shell.exec('git add '+ packageJsonPath +' ' + packageLockPath)
-console.log(updateTypes[index] + ' update')
+console.log(updateTypes[index - 1] + ' update')
